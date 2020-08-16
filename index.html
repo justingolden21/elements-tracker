@@ -26,18 +26,24 @@
 	<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
 
 	<div id="app">
-		{{ numAlive }} {{ numAlive | pluralize }} left
+		{{ numAlive }} {{ numAlive | pluralize }} remaining
 		<button @click="addPlayer()" class="btn"><i class="fas fa-plus"></i> Add player</button>
-		<template v-for="player in players">
-			<div :class="{dead: player.life<1}" class="border shadow p-2 m-4">
-				<button @click="removePlayer(player)" class="btn float-right"><i class="fas fa-times"></i></button>
-				<input v-model="player.name" type="text" class="form-control text-center">
-				Life:
-				<input v-model="player.life" type="number" class="form-control">
-				Gems:
-				<input v-model="player.gems" type="number" class="form-control">
-			</div>
-		</template>
+		<div class="row">		
+			<template v-for="player in players">
+				<div :class="{dead: player.life < 1}" class="p-2 col-lg-3 col-md-4 col-sm-6">
+					<div class="border shadow rounded p-2">
+						<button @click="removePlayer(player)" class="btn float-right">
+							<i class="fas fa-times"></i>
+						</button>
+						<input v-model="player.name" type="text" class="form-control text-center">
+						Life:
+						<input v-model="player.life" type="number" class="form-control">
+						Gems:
+						<input v-model="player.gems" type="number" class="form-control">
+					</div>
+				</div>
+			</template>
+		</div>
 	</div>
 
 </body>
