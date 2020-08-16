@@ -26,8 +26,15 @@
 	<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
 
 	<div id="app">
+		{{ players[0].name}}
 		<template v-for="player in players">
-			<player @update-input="handleChange" :id="player.id" :name="player.name" :gems="player.gems" :life="player.life"></player>
+			<div class="border shadow p-2 m-4">
+				<input v-model="player.name" type="text" class="form-control text-center">
+				Life:
+				<input v-model="player.life" type="number" class="form-control">
+				Gems:
+				<input v-model="player.gems" type="number" class="form-control">
+			</div>
 		</template>
 	</div>
 
