@@ -29,7 +29,12 @@ $( ()=> {
 					player.life = 20;
 					player.gems = 0;
 				});
-			}
+			},
+			updateAll: function(part, amount) {
+				for(let player of this.players) {
+					this.updatePlayer(player, part, amount);
+				}
+			},
 		},
 		computed: {
 			numAlive: function() {
@@ -42,6 +47,12 @@ $( ()=> {
 			},
 		},
 	});
+
+	$('#toggle-footer-btn').click(function() {
+		$('#footer').toggleClass('collapsed');
+		$('#toggle-footer-btn i').toggleClass('fa-angle-down fa-angle-up');
+	});
+
 });
 
 function clamp(num, min, max) {

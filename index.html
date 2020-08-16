@@ -21,7 +21,7 @@
 <script src="scripts.js"></script>
 
 </head>
-<body class="text-center container">
+<body class="text-center p-4">
 
 	<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
 
@@ -33,6 +33,8 @@
 		<!-- setting: remove deleted players -->
 		<!-- setting: store in localstorage -->
 		<!-- setting: url params -->
+		<!-- support more players? to top btn? -->
+		<!-- delete all players btn? -->
 		<button @click="addPlayer()" class="btn">
 			<i class="fas fa-plus"></i> Add player
 		</button>
@@ -40,10 +42,11 @@
 			<i class="fas fa-sync-alt"></i> Reset players
 		</button>
 
-		<div class="row">		
+		<!-- <div class="p-4"> -->
+		<div class="row">
 			<template v-for="player in players">
 				<div class="p-2 col-xl-3 col-lg-4 col-md-6">
-					<div :class="{dead: player.life < 1, win: player.gems > 19}" class="border shadow rounded p-2">
+					<div :class="{dead: player.life < 1, win: player.gems > 19}" class="border rounded shadow p-2">
 						<input v-model="player.name" type="text" class="form-control border-white col-8 font-weight-bold" onclick="this.select()">
 						<button @click="removePlayer(player)" class="btn remove-btn">
 							<i class="fas fa-times"></i>
@@ -78,6 +81,44 @@
 				</div>
 			</template>
 		</div>
+		<!-- </div> -->
+
+		<div id="spacer"></div>
+
+		<div id="footer" class="bg-white shadow border rounded row text-left">
+			<div class="col-2">
+				<button id="toggle-footer-btn" class="btn">
+					<i class="fas fa-angle-down"></i>
+				</button>
+			</div>
+			<div class="col-9 bg-transparent">
+			</div>
+			<div class="footer-row col-2">All:</div>
+			<div class="footer-row col-md-5 col-10">
+				<small>Life</small>
+				<div class="btn-group d-inline">
+					<button @click="updateAll('life', -5)" class="btn">-5</button>
+					<button @click="updateAll('life', -3)" class="btn">-3</button>
+					<button @click="updateAll('life', -1)" class="btn">-1</button>
+					<button @click="updateAll('life', 1)" class="btn">+1</button>
+					<button @click="updateAll('life', 3)" class="btn">+3</button>
+					<button @click="updateAll('life', 5)" class="btn">+5</button>
+				</div>
+			</div>
+			<div class="d-md-none col-2"></div>
+			<div class="footer-row col-md-5 col-10">
+				<small>Gems</small>
+				<div class="btn-group d-inline">
+					<button @click="updateAll('gems', -5)" class="btn">-5</button>
+					<button @click="updateAll('gems', -3)" class="btn">-3</button>
+					<button @click="updateAll('gems', -1)" class="btn">-1</button>
+					<button @click="updateAll('gems', 1)" class="btn">+1</button>
+					<button @click="updateAll('gems', 3)" class="btn">+3</button>
+					<button @click="updateAll('gems', 5)" class="btn">+5</button>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </body>

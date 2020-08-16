@@ -30,11 +30,33 @@ input:hover:not(:focus), button:hover:not(:focus) {
 	border: 1px solid #6c757d !important; /* secondary color */
 }
 
+
+#footer {
+	position: fixed;
+	bottom: 0;
+}
+.footer-row {
+	height: 4rem;
+	line-height: 4rem;
+}
+#spacer {
+	height: 6rem;
+}
+#footer.collapsed {
+	bottom: -4rem;
+}
+
 @media (max-width: 768px) {
-	.btn-group .btn {
+	.btn-group .btn:not(.footer-row .btn-group) {
 		/* _buttons.scss:105 */
 		padding: .5rem 1rem;
 		font-size: 1.25rem;
 		line-height: 1.5;
+	}
+	#footer.collapsed {
+		bottom: -8rem;
+	}
+	#spacer {
+		height: 10rem;
 	}
 }
