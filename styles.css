@@ -11,6 +11,10 @@ img, button {
 	background: #e6e6e6;
 }
 
+.active {
+	background-color: #99f;
+	border-color: #99f;
+}
 .win {
 	background-color: #9f9;
 	border-color: #9f9 !important;
@@ -18,12 +22,6 @@ img, button {
 .dead {
 	background-color: #f99;
 	border-color: #f99 !important;
-}
-
-.remove-btn {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
 }
 
 input:hover:not(:focus), button:hover:not(:focus) {

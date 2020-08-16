@@ -1,11 +1,22 @@
+// util
+
+function clamp(num, min, max) {
+	return num <= min ? min : num >= max ? max : num;
+}
+function randInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+// app
+
 $( ()=> {
 	new Vue({
 		el: '#app',
 		data: {
 			players: [
-				{name: 'Player 1', life: 20, gems: 0},
-				{name: 'Player 2', life: 20, gems: 0},
-				{name: 'Player 3', life: 20, gems: 0},
+				{name: 'Player 1', life: 20, gems: 0, active: false},
+				{name: 'Player 2', life: 20, gems: 0, active: false},
+				{name: 'Player 3', life: 20, gems: 0, active: false},
 			],
 		},
 		methods: {
@@ -15,7 +26,7 @@ $( ()=> {
 			},
 			addPlayer: function() {
 				if(this.players.length >= 8) return;
-				this.players.push({name: 'Player ' + (this.players.length+1), life: 20, gems: 0});
+				this.players.push({name: 'Player ' + (this.players.length+1), life: 20, gems: 0, active: false});
 			},
 			updatePlayer: function(player, part, amount) {
 				let idx = this.players.indexOf(player);
@@ -28,12 +39,34 @@ $( ()=> {
 				this.players.forEach( player => {
 					player.life = 20;
 					player.gems = 0;
+					player.active = false;
 				});
 			},
 			updateAll: function(part, amount) {
-				for(let player of this.players) {
-					this.updatePlayer(player, part, amount);
+				this.players.forEach( player => this.updatePlayer(player, part, amount) );
+			},
+
+			activatePlayer: function(player) {
+				let idx = this.players.indexOf(player);
+
+				if(this.players[idx].active) {
+					this.players[idx].active = false;
+					return;
 				}
+
+				this.players.forEach( player => player.active = false );
+				this.players[idx].active = true;				
+			},
+			randomPlayer: function() {
+				this.players.forEach( player => player.active = false );
+				this.players[randInt(0,this.players.length-1) ].active = true;
+			},
+			nextPlayer: function() {
+				let activeIdx =  this.players.map( player => player.active ).indexOf(true);
+				let nextIdx = (activeIdx + 1) % this.players.length;
+
+				this.players.forEach( player => player.active = false );
+				this.players[nextIdx].active = true;
 			},
 		},
 		computed: {
@@ -54,7 +87,3 @@ $( ()=> {
 	});
 
 });
-
-function clamp(num, min, max) {
-	return num <= min ? min : num >= max ? max : num;
-}
