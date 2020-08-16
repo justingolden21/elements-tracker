@@ -30,6 +30,9 @@
 		<!-- todo: modify all players quick btns -->
 		<!-- todo: checkbox to display quick btns -->
 		<!-- todo: choose random player btn -->
+		<!-- setting: remove deleted players -->
+		<!-- setting: store in localstorage -->
+		<!-- setting: url params -->
 		<button @click="addPlayer()" class="btn">
 			<i class="fas fa-plus"></i> Add player
 		</button>
@@ -41,14 +44,14 @@
 			<template v-for="player in players">
 				<div class="p-2 col-xl-3 col-lg-4 col-md-6">
 					<div :class="{dead: player.life < 1, win: player.gems > 19}" class="border shadow rounded p-2">
-						<input v-model="player.name" type="text" class="form-control border-0 col-8 font-weight-bold" onclick="this.select()">
+						<input v-model="player.name" type="text" class="form-control border-white col-8 font-weight-bold" onclick="this.select()">
 						<button @click="removePlayer(player)" class="btn remove-btn">
 							<i class="fas fa-times"></i>
 						</button>
 
 						<div class="mt-2">
 							<span class="col-6">Life:</span>
-							<input v-model="player.life" type="number" min="0" max="20" class="form-control d-inline col-6">
+							<input v-model="player.life" type="number" min="0" max="20" class="form-control d-inline col-6" onclick="this.select()">
 						</div>
 						<div class="btn-group mt-2">
 							<button @click="updatePlayer(player, 'life', -5)" class="btn">-5</button>
@@ -61,7 +64,7 @@
 
 						<div class="mt-2">
 							<span class="col-6">Gems:</span>
-							<input v-model="player.gems" type="number" min="0" max="20" class="form-control d-inline col-6">
+							<input v-model="player.gems" type="number" min="0" max="20" class="form-control d-inline col-6" onclick="this.select()">
 						</div>
 						<div class="btn-group mt-2">
 							<button @click="updatePlayer(player, 'gems', -5)" class="btn">-5</button>

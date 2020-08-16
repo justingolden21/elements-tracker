@@ -12,10 +12,12 @@ img, button {
 }
 
 .win {
-	background-color: #6f6;
+	background-color: #9f9;
+	border-color: #9f9 !important;
 }
 .dead {
-	background-color: #f66;
+	background-color: #f99;
+	border-color: #f99 !important;
 }
 
 .remove-btn {
@@ -24,6 +26,9 @@ img, button {
 	right: 1rem;
 }
 
+input:hover, button:hover {
+	border: 1px solid #6c757d !important; /* secondary color */
+}
 
 @media (max-width: 768px) {
 	.btn-group .btn {
