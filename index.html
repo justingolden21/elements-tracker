@@ -25,5 +25,12 @@
 
 	<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
 
+	<div id="app">
+		<template v-for="player in players">
+			<player :name="player.name" :gems="player.gems" :life="player.life"></player>
+		</template>
+		
+	</div>
+
 </body>
 </html>
