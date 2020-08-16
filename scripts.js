@@ -15,8 +15,7 @@ $( ()=> {
 			},
 			addPlayer: function() {
 				if(this.players.length >= 8) return;
-				this.players.push({name: 'New Player', life: 20, gems: 0});
-				// todo: autofocus new player's name
+				this.players.push({name: 'Player ' + (this.players.length+1), life: 20, gems: 0});
 			},
 			updatePlayer: function(player, part, amount) {
 				let idx = this.players.indexOf(player);
