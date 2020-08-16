@@ -14,6 +14,7 @@ $( ()=> {
 				this.players.splice(idx, 1);
 			},
 			addPlayer: function() {
+				if(this.players.length >= 8) return;
 				this.players.push({name: 'New Player', life: 20, gems: 0});
 				// todo: autofocus new player's name
 			},
