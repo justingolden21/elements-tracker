@@ -11,10 +11,25 @@ img, button {
 	background: #e6e6e6;
 }
 
+.win {
+	background-color: #6f6;
+}
 .dead {
 	background-color: #f66;
 }
 
-/*@media (max-width: 768px) {
+.remove-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
 
-}*/
+
+@media (max-width: 768px) {
+	.btn-group .btn {
+		/* _buttons.scss:105 */
+		padding: .5rem 1rem;
+		font-size: 1.25rem;
+		line-height: 1.5;
+	}
+}

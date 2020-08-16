@@ -38,24 +38,37 @@
 		<div class="row">		
 			<template v-for="player in players">
 				<div class="p-2 col-xl-3 col-lg-4 col-md-6">
-					<div :class="{dead: player.life < 1}" class="border shadow rounded p-2">
-						<button @click="removePlayer(player)" class="btn float-right">
+					<div :class="{dead: player.life < 1, win: player.gems > 19}" class="border shadow rounded p-2">
+						<input v-model="player.name" type="text" class="form-control col-8 text-center" onclick="this.select()">
+						<button @click="removePlayer(player)" class="btn remove-btn">
 							<i class="fas fa-times"></i>
 						</button>
-						<input v-model="player.name" type="text" class="form-control text-center" onclick="this.select()">
-						Life:
-						<button @click="updatePlayer(player, 'life', -3)" class="btn">-3</button>
-						<button @click="updatePlayer(player, 'life', -1)" class="btn">-1</button>
-						<button @click="updatePlayer(player, 'life', 1)" class="btn">+1</button>
-						<button @click="updatePlayer(player, 'life', 3)" class="btn">+3</button>
-						<input v-model="player.life" type="number" min="0" max="20" class="form-control">
 
-						Gems:
-						<button @click="updatePlayer(player, 'gems', -3)" class="btn">-3</button>
-						<button @click="updatePlayer(player, 'gems', -1)" class="btn">-1</button>
-						<button @click="updatePlayer(player, 'gems', 1)" class="btn">+1</button>
-						<button @click="updatePlayer(player, 'gems', 3)" class="btn">+3</button>
-						<input v-model="player.gems" type="number" min="0" max="20" class="form-control">
+						<div class="mt-2">
+							<span class="col-6">Life:</span>
+							<input v-model="player.life" type="number" min="0" max="20" class="form-control d-inline col-6">
+						</div>
+						<div class="btn-group">
+							<button @click="updatePlayer(player, 'life', -5)" class="btn">-5</button>
+							<button @click="updatePlayer(player, 'life', -3)" class="btn">-3</button>
+							<button @click="updatePlayer(player, 'life', -1)" class="btn">-1</button>
+							<button @click="updatePlayer(player, 'life', 1)" class="btn">+1</button>
+							<button @click="updatePlayer(player, 'life', 3)" class="btn">+3</button>
+							<button @click="updatePlayer(player, 'life', 5)" class="btn">+5</button>
+						</div>
+
+						<div class="mt-2">
+							<span class="col-6">Gems:</span>
+							<input v-model="player.gems" type="number" min="0" max="20" class="form-control d-inline col-6">
+						</div>
+						<div class="btn-group">
+							<button @click="updatePlayer(player, 'gems', -5)" class="btn">-5</button>
+							<button @click="updatePlayer(player, 'gems', -3)" class="btn">-3</button>
+							<button @click="updatePlayer(player, 'gems', -1)" class="btn">-1</button>
+							<button @click="updatePlayer(player, 'gems', 1)" class="btn">+1</button>
+							<button @click="updatePlayer(player, 'gems', 3)" class="btn">+3</button>
+							<button @click="updatePlayer(player, 'gems', 5)" class="btn">+5</button>
+						</div>
 					</div>
 				</div>
 			</template>
