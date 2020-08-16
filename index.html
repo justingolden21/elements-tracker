@@ -37,8 +37,8 @@
 
 		<div class="row">		
 			<template v-for="player in players">
-				<div :class="{dead: player.life < 1}" class="p-2 col-xl-3 col-lg-4 col-md-6">
-					<div class="border shadow rounded p-2">
+				<div class="p-2 col-xl-3 col-lg-4 col-md-6">
+					<div :class="{dead: player.life < 1}" class="border shadow rounded p-2">
 						<button @click="removePlayer(player)" class="btn float-right">
 							<i class="fas fa-times"></i>
 						</button>

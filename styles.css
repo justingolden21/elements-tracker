@@ -12,7 +12,7 @@ img, button {
 }
 
 .dead {
-	background-color: red;
+	background-color: #f66;
 }
 
 /*@media (max-width: 768px) {
