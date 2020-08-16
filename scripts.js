@@ -3,18 +3,23 @@ $( ()=> {
 		el: '#app',
 		data: {
 			players: [
-				{name: 'Justin', life: 20, gems: 0},
-				{name: 'Bobby', life: 17, gems: 2},
-				{name: 'Dad', life: 12, gems: 1},
+				{name: 'Player 1', life: 20, gems: 0},
+				{name: 'Player 2', life: 20, gems: 0},
+				{name: 'Player 3', life: 20, gems: 0},
 			],
 		},
 		methods: {
 			removePlayer: function(player) {
-				this.players.splice(this.players.indexOf(player), 1);
+				let idx = this.players.indexOf(player);
+				this.players.splice(idx, 1);
 			},
 			addPlayer: function() {
 				this.players.push({name: 'Joe', life: 20, gems: 0});
 			},
+			updatePlayer: function(player, part, amount) {
+				let idx = this.players.indexOf(player);
+				this.players[idx][part] += amount;
+			}
 		},
 		computed: {
 			numAlive: function() {

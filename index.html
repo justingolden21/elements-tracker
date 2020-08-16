@@ -27,6 +27,7 @@
 
 	<div id="app">
 		{{ numAlive }} {{ numAlive | pluralize }} remaining
+		<!-- todo reset players btn -->
 		<button @click="addPlayer()" class="btn"><i class="fas fa-plus"></i> Add player</button>
 		<div class="row">		
 			<template v-for="player in players">
@@ -37,8 +38,13 @@
 						</button>
 						<input v-model="player.name" type="text" class="form-control text-center">
 						Life:
+						<button @click="updatePlayer(player, 'life', -1)" class="btn">-1</button>
+						<button @click="updatePlayer(player, 'life', 1)" class="btn">+1</button>
 						<input v-model="player.life" type="number" class="form-control">
+
 						Gems:
+						<button @click="updatePlayer(player, 'gems', -1)" class="btn">-1</button>
+						<button @click="updatePlayer(player, 'gems', 1)" class="btn">+1</button>
 						<input v-model="player.gems" type="number" class="form-control">
 					</div>
 				</div>
