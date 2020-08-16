@@ -19,7 +19,10 @@ $( ()=> {
 			updatePlayer: function(player, part, amount) {
 				let idx = this.players.indexOf(player);
 				this.players[idx][part] += amount;
-			}
+
+				this.players[idx].life = clamp(this.players[idx].life, 0, 20);
+				this.players[idx].gems = clamp(this.players[idx].gems, 0, 20);
+			},
 		},
 		computed: {
 			numAlive: function() {
@@ -33,3 +36,7 @@ $( ()=> {
 		},
 	});
 });
+
+function clamp(num, min, max) {
+	return num <= min ? min : num >= max ? max : num;
+}
