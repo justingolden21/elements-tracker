@@ -1,3 +1,5 @@
+/* reset */
+
 img, button {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
@@ -10,6 +12,8 @@ img, button {
 ::selection {
 	background: #e6e6e6;
 }
+
+/* player states */
 
 .active {
 	background-color: #99f;
@@ -24,10 +28,29 @@ img, button {
 	border-color: #f99 !important;
 }
 
+/* inputs */
+
 input:hover:not(:focus), button:hover:not(:focus) {
-	border: 1px solid #6c757d !important; /* secondary color */
+	border: 1px solid #6c757d !important; /* bootstrap secondary */
+}
+.custom-control-input:checked~.custom-control-label::before {
+	background-color: #212529; /* bootstrap black */
+	border-color: #212529; /* bootstrap black */
 }
 
+/* top buttons */
+#fullscreen-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#settings-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* footer */
 
 #footer {
 	position: fixed;
@@ -44,12 +67,17 @@ input:hover:not(:focus), button:hover:not(:focus) {
 	bottom: -4rem;
 }
 
+/* @media */
+
 @media (max-width: 768px) {
 	.btn-group .btn:not(.footer-row .btn-group) {
 		/* _buttons.scss:105 */
 		padding: .5rem 1rem;
 		font-size: 1.25rem;
 		line-height: 1.5;
+	}
+	#fullscreen-btn {
+		display: none;
 	}
 	#footer.collapsed {
 		bottom: -8rem;

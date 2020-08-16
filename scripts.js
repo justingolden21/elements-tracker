@@ -7,6 +7,15 @@ function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+function toggleFullScreen() {
+	if(!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+	} else if(document.exitFullscreen) {
+		document.exitFullscreen();
+	}
+}
+
 // app
 
 $( ()=> {
@@ -18,6 +27,10 @@ $( ()=> {
 				{name: 'Player 2', life: 20, gems: 0, active: false},
 				{name: 'Player 3', life: 20, gems: 0, active: false},
 			],
+			settings: {
+				choosePlayers: false,
+				quickButtons: true,
+			},
 		},
 		methods: {
 			removePlayer: function(player) {

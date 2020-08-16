@@ -23,38 +23,54 @@
 </head>
 <body class="text-center p-4">
 
-	<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
-
 	<div id="app">
+
+		<button id="settings-btn" class="btn" data-toggle="collapse" data-target="#settings">
+			<i class="fas fa-cog"></i>
+		</button>
+
+		<div class="collapse" id="settings">
+			<div class="card card-body">
+				<div class="custom-control custom-checkbox">
+					<input v-model="settings.choosePlayers" type="checkbox" class="custom-control-input" id="choose-players-checkbox">
+					<label class="custom-control-label" for="choose-players-checkbox">Choose players</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input v-model="settings.quickButtons" type="checkbox" class="custom-control-input" id="quick-buttons-checkbox">
+					<label class="custom-control-label" for="quick-buttons-checkbox">Quick buttons</label>
+				</div>
+			</div>
+		</div>
+
+		<h3 class="pt-2">Elements <small>Life & Gems</small></h3>
+
+		<button id="fullscreen-btn" class="btn" onclick="toggleFullScreen()">
+			<i class="fas fa-expand"></i>
+		</button>
+
+		<!-- -- -- -->
+
 		{{ numAlive }} {{ numAlive | pluralize }} remaining
-		<!-- todo: modify all players quick btns -->
-		<!-- todo: checkbox to display quick btns -->
-		<!-- todo: choose random player btn -->
-		<!-- setting: remove deleted players -->
-		<!-- setting: confirm before deleting player -->
-		<!-- setting: store in localstorage -->
-		<!-- setting: url params -->
-		<!-- support more players? to top btn? -->
-		<!-- delete all players btn? -->
 		<button @click="addPlayer()" class="btn">
 			<i class="fas fa-plus"></i> Add player
 		</button>
 		<button @click="resetPlayers()" class="btn">
 			<i class="fas fa-sync-alt"></i> Reset players
 		</button>
-		<button @click="randomPlayer()" class="btn">
+		<button @click="randomPlayer()" class="btn" v-show="settings.choosePlayers">
 			<i class="fas fa-dice-five"></i> Random player
 		</button>
-		<button @click="nextPlayer()" class="btn">
+		<button @click="nextPlayer()" class="btn" v-show="settings.choosePlayers">
 			<i class="fas fa-arrow-right"></i> Next player
 		</button>
 
-		<!-- <div class="p-4"> -->
+		<br>
+
 		<div class="row">
 			<template v-for="player in players">
 				<div class="p-2 col-xl-3 col-lg-4 col-md-6">
 					<div :class="{active: player.active, dead: player.life < 1, win: player.gems > 19}" class="border rounded shadow p-2">
-						<button @click="activatePlayer(player)" class="btn col-2">
+						<button @click="activatePlayer(player)" class="btn col-2" v-show="settings.choosePlayers">
 							<i class="fas fa-map-marker"></i>
 						</button>
 						<input v-model="player.name" type="text" class="form-control d-inline border-white col-6 font-weight-bold" onclick="this.select()">
@@ -66,7 +82,7 @@
 							<span class="col-6">Life:</span>
 							<input v-model="player.life" type="number" min="0" max="20" class="form-control d-inline col-6" onclick="this.select()">
 						</div>
-						<div class="btn-group mt-2">
+						<div class="btn-group mt-2" v-show="settings.quickButtons">
 							<button @click="updatePlayer(player, 'life', -5)" class="btn">-5</button>
 							<button @click="updatePlayer(player, 'life', -3)" class="btn">-3</button>
 							<button @click="updatePlayer(player, 'life', -1)" class="btn">-1</button>
@@ -79,7 +95,7 @@
 							<span class="col-6">Gems:</span>
 							<input v-model="player.gems" type="number" min="0" max="20" class="form-control d-inline col-6" onclick="this.select()">
 						</div>
-						<div class="btn-group mt-2">
+						<div class="btn-group mt-2" v-show="settings.quickButtons">
 							<button @click="updatePlayer(player, 'gems', -5)" class="btn">-5</button>
 							<button @click="updatePlayer(player, 'gems', -3)" class="btn">-3</button>
 							<button @click="updatePlayer(player, 'gems', -1)" class="btn">-1</button>
@@ -91,7 +107,6 @@
 				</div>
 			</template>
 		</div>
-		<!-- </div> -->
 
 		<div id="spacer"></div>
 

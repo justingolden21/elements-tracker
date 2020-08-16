@@ -1,0 +1,5 @@
+setting: remove deleted players
+setting: confirm before deleting player
+setting: store in localstorage
+setting: url params
+delete all players btn?
