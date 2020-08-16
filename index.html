@@ -27,9 +27,14 @@
 
 	<div id="app">
 		{{ numAlive }} {{ numAlive | pluralize }} remaining
-		<!-- todo reset players btn -->
 		<!-- todo: modify all players quick btns -->
-		<button @click="addPlayer()" class="btn"><i class="fas fa-plus"></i> Add player</button>
+		<button @click="addPlayer()" class="btn">
+			<i class="fas fa-plus"></i> Add player
+		</button>
+		<button @click="resetPlayers()" class="btn">
+			<i class="fas fa-sync-alt"></i> Reset players
+		</button>
+
 		<div class="row">		
 			<template v-for="player in players">
 				<div :class="{dead: player.life < 1}" class="p-2 col-lg-3 col-md-4 col-sm-6">

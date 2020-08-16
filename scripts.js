@@ -14,7 +14,8 @@ $( ()=> {
 				this.players.splice(idx, 1);
 			},
 			addPlayer: function() {
-				this.players.push({name: 'Joe', life: 20, gems: 0});
+				this.players.push({name: 'New Player', life: 20, gems: 0});
+				// todo: autofocus new player's name
 			},
 			updatePlayer: function(player, part, amount) {
 				let idx = this.players.indexOf(player);
@@ -23,6 +24,12 @@ $( ()=> {
 				this.players[idx].life = clamp(this.players[idx].life, 0, 20);
 				this.players[idx].gems = clamp(this.players[idx].gems, 0, 20);
 			},
+			resetPlayers: function() {
+				this.players.forEach( player => {
+					player.life = 20;
+					player.gems = 0;
+				});
+			}
 		},
 		computed: {
 			numAlive: function() {
@@ -31,7 +38,7 @@ $( ()=> {
 		},
 		filters: {
 			pluralize: function(n) {
-				return n === 1 ? 'player' : 'players';
+				return 'player' + (n === 1 ? '' : 's');
 			},
 		},
 	});
